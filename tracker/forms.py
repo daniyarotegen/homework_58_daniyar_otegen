@@ -4,7 +4,7 @@ from .models import Issue, Type, Status
 
 
 class CustomMaxValidator(BaseValidator):
-    def __init__(self, limit_value=20):
+    def __init__(self, limit_value=50):
         message = 'Maximum summary length is %(limit_value)s symbols. You entered %(show_value)s symbols'
         super().__init__(limit_value=limit_value, message=message)
 

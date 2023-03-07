@@ -7,6 +7,6 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['issues'] = Issue.objects.all()
+        context['issues'] = Issue.objects.order_by('-created_at')
         return context
 

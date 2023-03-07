@@ -1,0 +1,13 @@
+from tracker.models import *
+from django.db.models import Q
+from datetime import date, timedelta
+from django.utils import timezone
+
+Issue.objects.filter(Q(status__name='Done'), Q(updated_at__gte=(date.today() - timedelta(days=30))))
+Issue.objects.filter(Q(status__name='New') | Q(status__name='Done'), Q(type__name='Bug') | Q(type__name='Task'))
+Issue.objects.filter(Q(summary__icontains='bug') | Q(type__name='Bug'), ~Q(status__name='Done'))
+
+Issue.objects.values('id', 'summary', 'type__name', 'status__name')
+Issue.objects.filter(type__name='Task')
+Issue.objects.filter(type__name='Bug')
+Issue.objects.filter(type__name='Enhancement')
